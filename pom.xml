@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.xs</groupId>
+	<artifactId>pom</artifactId>
+	<version>0.9.3.1</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<vendor.sign>SP</vendor.sign>
+		<vendor.name>Steve PECHBERTI, Ph.D</vendor.name>
+		<vendor.desc>Scientific Engineer</vendor.desc>
+		<vendor.addr>http://sp-web.fr</vendor.addr>
+
+		<vendor.contact.name>Steve PECHBERTI</vendor.contact.name>
+		<vendor.contact.email>steve.pechberti@sp-web.fr</vendor.contact.email>
+
+		<project.build.jdk.version>1.8</project.build.jdk.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<maven.build.timestamp.format>yyyyMMddhhmm</maven.build.timestamp.format>
+
+    	<maven.source.skip>true</maven.source.skip>
+    	<maven.javadoc.skip>true</maven.javadoc.skip>
+	</properties>
+
+	<name>${vendor.name} Main POM</name>
+	<description>The POM file used as root/parent POM for all my projects.</description>
+	<url>github.com/sanke69/pom.git</url>
+
+	<scm>
+		<url>https://github.com/sanke69/pom.git</url>
+		<connection>git@github.com:sanke69/pom.git</connection>
+		<developerConnection>git@github.com:sanke69/pom.git</developerConnection>
+	</scm>
+
+	<organization>
+		<name>${vendor.sign} - ${vendor.name}</name>
+		<url>${vendor.addr}</url>
+	</organization>
+
+	<developers>
+	    <developer>
+	        <id>sanke</id>
+	        <name>${vendor.contact.name}</name>
+	        <email>${vendor.contact.email}</email>
+	        <organization>${vendor.desc}</organization>
+	        <organizationUrl>${vendor.addr}</organizationUrl>
+	        <roles>
+	            <role>Project-Administrator</role>
+	            <role>Developer</role>
+	        </roles>
+	        <timezone>+1</timezone>
+	    </developer>
+	</developers>
+
+	<licenses>
+		<license>
+			<name>GPL v3</name>
+			<url>http://www.gnu.org/licenses/gpl-3.0.fr.html</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<build>
+		<plugins>
+			<plugin> <!-- SET THE COMPILER LEVEL -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>${project.build.jdk.version}</source>
+					<target>${project.build.jdk.version}</target>
+				</configuration>
+			</plugin>
+
+			<plugin> <!-- GENERATE SOURCE CODE PACKAGE -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2.1</version>
+				<configuration>
+					<skipSource>${maven.source.skip}</skipSource>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin> <!-- GENERATE JAVADOC PACKAGE -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9.1</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin> <!-- DOWNLOAD SOURCE CODE IN ECLIPSE -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>false</downloadJavadocs>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
